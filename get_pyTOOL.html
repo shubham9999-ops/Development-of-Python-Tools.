@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-teal.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<body>
+  <style>
+    .oneline {
+ width: 450px;
+ height: 80px;
+ border: solid 1px #ccc;
+ display: inline-block;
+}
+    .card {
+      box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.2);
+      max-width: 300px;
+      margin: auto;
+      text-align: center;
+      font-family: arial;
+    }
+    
+    .price {
+      font-size: 22px;
+    }
+    
+    .card button {
+      border: none;
+      outline: 0;
+      padding: 12px;
+      color: white;
+      text-align: center;
+      cursor: pointer;
+      width: 100%;
+      font-size: 18px;
+    }
+    
+    .card button:hover {
+      opacity: 0.7;
+    }
+    </style>
+<nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" id="mySidebar">
+  <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
+  
+  <a class="w3-bar-item w3-button w3-teal" href="get_pyTOOL.html">Get pyTOOL</a>
+  <div>
+    <a class="w3-bar-item w3-button" onclick="myAccordion('demo')" href="javascript:void(0)">More<i class="fa fa-caret-down"></i></a>
+    <div id="demo" class="w3-hide">
+      <a class="w3-bar-item w3-button" href="Projectpython.html">About</a>
+    </div>
+  </div>
+</nav>
+
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
+
+<div class="w3-main" style="margin-left:250px;">
+
+<div id="myTop" class="w3-container w3-top w3-theme w3-large">
+  <p><i class="fa fa-bars w3-button w3-teal w3-hide-large w3-xlarge" onclick="w3_open()"></i>
+  <span id="myIntro" class="w3-hide">About pyTOOL</span></p>
+</div>
+
+<header class="w3-container w3-theme" style="padding:64px 32px">
+  <h1 class="w3-xxxlarge">pyTOOL : A multi purpose tool.</h1>
+</header>
+
+<div class="w3-container" style="padding:32px">
+
+<h1 class="text-warning"><b>Payment</b></h1>
+
+<p>Complete the below payment to get pyTOOL</p>
+<br>
+<div class="card oneline">
+  <img src="https://www.pngall.com/wp-content/uploads/2/Download-Button-PNG-Image-File.png" alt="Denim Jeans" style="width:100%">
+  <h1>yTv</h1>
+  <h3 class="price text-danger">$6.66</h3>
+  <p><button id="rzp-button1" class="btn btn-primary btn-lg">Buy</button></p>
+</div>
+<div class="card oneline">
+  <img src="https://www.pngall.com/wp-content/uploads/2/Download-Button-PNG-Image-File.png" alt="Denim Jeans" style="width:100%">
+  <h1>PORT scanner</h1>
+  <h3 class="price text-danger">$6.66</h3>
+  <p><button id="rzp-button2" class="btn btn-primary btn-lg">Buy</button></p>
+</div>
+<div class="card oneline">
+  <img src="https://www.pngall.com/wp-content/uploads/2/Download-Button-PNG-Image-File.png" alt="Denim Jeans" style="width:100%">
+  <h1>encAdec</h1>
+  <h3 class="price text-danger">$6.66</h3>
+  <p><button id="rzp-button3" class="btn btn-primary btn-lg">Buy</button></p>
+</div>
+</div>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+var options = {
+    "key": "rzp_test_PTWCK5GaYCQb7n", // Enter the Key ID generated from the Dashboard
+    "amount": "50000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "pyTOOL Ltd.",
+    "description": "Test Transaction",
+    "image": "https://example.com/your_logo",
+    "order_id": "order_ISV90JhttOX3jJ", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "handler": function (response){
+        alert('Payment ID:' + response.razorpay_payment_id);
+        window.open("https://drive.google.com/u/0/uc?export=download&confirm=jjzV&id=11hzIHHXnJAesiphoKpJo7rTPgnlGY-2Q");
+    },
+    "prefill": {
+        "name": "Gaurav Kumar",
+        "email": "gaurav.kumar@example.com",
+        "contact": "9999999999"
+    },
+    "notes": {
+        "address": "Razorpay Corporate Office"
+    },
+    "theme": {
+        "color": "#3399cc"
+    }
+};
+var rzp1 = new Razorpay(options);
+rzp1.on('payment.failed', function (response){
+        alert(response.error.code);
+        alert(response.error.description);
+        alert(response.error.source);
+        alert(response.error.step);
+        alert(response.error.reason);
+        alert(response.error.metadata.order_id);
+        alert(response.error.metadata.payment_id);
+});
+document.getElementById('rzp-button1').onclick = function(e){
+    rzp1.open();
+    e.preventDefault();
+}
+
+var options2 = {
+    "key": "rzp_test_PTWCK5GaYCQb7n", // Enter the Key ID generated from the Dashboard
+    "amount": "50000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "pyTOOL Ltd.",
+    "description": "Test Transaction",
+    "image": "https://example.com/your_logo",
+    "order_id": "order_ISVAA4KrTVBFXN", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "handler": function (response){
+        alert('Payment ID:' + response.razorpay_payment_id);
+        window.open("https://drive.google.com/u/0/uc?export=download&confirm=Nu6T&id=10gwcIMubWqovZVk1zXiM41cj6V8M95qw");
+    },
+    "prefill": {
+        "name": "Gaurav Kumar",
+        "email": "gaurav.kumar@example.com",
+        "contact": "9999999999"
+    },
+    "notes": {
+        "address": "Razorpay Corporate Office"
+    },
+    "theme": {
+        "color": "#3399cc"
+    }
+};
+var rzp2 = new Razorpay(options2);
+rzp2.on('payment.failed', function (response){
+        alert(response.error.code);
+        alert(response.error.description);
+        alert(response.error.source);
+        alert(response.error.step);
+        alert(response.error.reason);
+        alert(response.error.metadata.order_id);
+        alert(response.error.metadata.payment_id);
+});
+document.getElementById('rzp-button2').onclick = function(e){
+    rzp2.open();
+    e.preventDefault();
+}
+
+var options3 = {
+    "key": "rzp_test_PTWCK5GaYCQb7n", // Enter the Key ID generated from the Dashboard
+    "amount": "50000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "pyTOOL Ltd.",
+    "description": "Test Transaction",
+    "image": "https://example.com/your_logo",
+    "order_id": "order_ISV9oJofPJFRky", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "handler": function (response){
+        alert('Payment ID:' + response.razorpay_payment_id);
+        window.open("https://drive.google.com/u/0/uc?export=download&confirm=JTaU&id=1-996vx71JOGIqoyK0AKM3aoM-rLKPKj4");
+    },
+    "prefill": {
+        "name": "Gaurav Kumar",
+        "email": "gaurav.kumar@example.com",
+        "contact": "9999999999"
+    },
+    "notes": {
+        "address": "Razorpay Corporate Office"
+    },
+    "theme": {
+        "color": "#3399cc"
+    }
+};
+var rzp3 = new Razorpay(options3);
+rzp3.on('payment.failed', function (response){
+        alert(response.error.code);
+        alert(response.error.description);
+        alert(response.error.source);
+        alert(response.error.step);
+        alert(response.error.reason);
+        alert(response.error.metadata.order_id);
+        alert(response.error.metadata.payment_id);
+});
+document.getElementById('rzp-button3').onclick = function(e){
+    rzp3.open();
+    e.preventDefault();
+}
+</script>
+</div>
+
+<script>
+// Open and close the sidebar on medium and small screens
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("myOverlay").style.display = "block";
+}
+
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("myOverlay").style.display = "none";
+}
+
+// Change style of top container on scroll
+window.onscroll = function() {myFunction()};
+function myFunction() {
+  if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+    document.getElementById("myTop").classList.add("w3-card-4", "w3-animate-opacity");
+    document.getElementById("myIntro").classList.add("w3-show-inline-block");
+  } else {
+    document.getElementById("myIntro").classList.remove("w3-show-inline-block");
+    document.getElementById("myTop").classList.remove("w3-card-4", "w3-animate-opacity");
+  }
+}
+
+// Accordions
+function myAccordion(id) {
+  var x = document.getElementById(id);
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+    x.previousElementSibling.className += " w3-theme";
+  } else { 
+    x.className = x.className.replace("w3-show", "");
+    x.previousElementSibling.className = 
+    x.previousElementSibling.className.replace(" w3-theme", "");
+  }
+}
+</script>
+     
+</body>
+</html> 
